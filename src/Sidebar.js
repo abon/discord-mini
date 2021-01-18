@@ -2,8 +2,17 @@ import React from "react";
 import "./Sidebar.css";
 import SidebarChannel from "./SidebarChannel";
 
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import MicIcon from "@material-ui/icons/Mic";
+
 import AddIcon from "@material-ui/icons/Add";
+import CallIcon from "@material-ui/icons/Call";
+import HeadsetIcon from "@material-ui/icons/Headset";
+import SettingsIcon from "@material-ui/icons/Settings";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import InfoOutlinedIcon from "@material-ui/icons/InfoOutlined";
+import SignalCellularAltIcon from "@material-ui/icons/SignalCellularAlt";
+
+import { Avatar } from "@material-ui/core";
 
 const Sidebar = () => {
   return (
@@ -27,6 +36,37 @@ const Sidebar = () => {
           <SidebarChannel />
           <SidebarChannel />
           <SidebarChannel />
+        </div>
+      </div>
+
+      <div className="sidebar__voice">
+        <SignalCellularAltIcon
+          className="sidebar__voiceIcon"
+          fontSize="large"
+        />
+
+        <div className="sidebar__voiceInfo">
+          <h3>Voice Connected</h3>
+          <p>Stream</p>
+        </div>
+        <div className="sidebar__voiceIcons">
+          <InfoOutlinedIcon />
+          <CallIcon />
+        </div>
+      </div>
+      <div className="sidebar__profile">
+        <Avatar src="https://avatars0.githubusercontent.com/u/52652937?s=400&u=9ee4e2f3771b06b1aad2864c8b4659314860bcf8&v=4" />
+        <div className="sidebar__profileInfo">
+          <h3>
+            {" "}
+            <a href="https://github.com/abon">@abon</a>
+          </h3>
+          <p>#githubLink</p>
+        </div>
+        <div className="sidebar__profileIcons">
+          <MicIcon />
+          <HeadsetIcon />
+          <SettingsIcon />
         </div>
       </div>
     </div>
