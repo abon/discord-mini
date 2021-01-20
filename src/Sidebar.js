@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import "./Sidebar.css";
+import { Avatar } from "@material-ui/core";
 import SidebarChannel from "./SidebarChannel";
-
 import MicIcon from "@material-ui/icons/Mic";
-
 import AddIcon from "@material-ui/icons/Add";
 import CallIcon from "@material-ui/icons/Call";
 import HeadsetIcon from "@material-ui/icons/Headset";
@@ -11,10 +11,13 @@ import SettingsIcon from "@material-ui/icons/Settings";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import InfoOutlinedIcon from "@material-ui/icons/InfoOutlined";
 import SignalCellularAltIcon from "@material-ui/icons/SignalCellularAlt";
-
-import { Avatar } from "@material-ui/core";
+import { selectUser } from "./features/userSlice";
+import { auth } from "./firebase";
 
 const Sidebar = () => {
+  const user = useSelector(selectUser);
+  const [channels, setChannels] = useState([]);
+
   return (
     <div className="sidebar">
       <div className="sidebar__top">
@@ -55,13 +58,13 @@ const Sidebar = () => {
         </div>
       </div>
       <div className="sidebar__profile">
-        <Avatar src="https://avatars0.githubusercontent.com/u/52652937?s=400&u=9ee4e2f3771b06b1aad2864c8b4659314860bcf8&v=4" />
+        <Avatar onClick={() => auth.signOut()} src={user.photo} />
         <div className="sidebar__profileInfo">
           <h3>
             {" "}
-            <a href="https://github.com/abon">@abon</a>
+            <a href="https://github.com/abon">{user.displayName}</a>
           </h3>
-          <p>#githubLink</p>
+          <p>#{user.uid.substring(0, 5)}</p>
         </div>
         <div className="sidebar__profileIcons">
           <MicIcon />
